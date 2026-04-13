@@ -23,3 +23,26 @@ def dammi_ora():
 @app.get("/saluta")
 def saluta_utente(nome: str):
     return {"messaggio": f"Ciao {nome}, benvenuto nel server di Terza!"}
+
+@app.get("/somma")
+def somma(a: float, b: float):
+    risultato = a + b
+    return {"risultato": risultato}
+
+@app.get("/calcolatrice")
+def calcolatrice(a: float, b: float, op: str):
+    print(op)
+    if op == "più":
+        risultato = a + b
+    elif op == "-":
+        risultato = a - b
+    elif op == "*":
+        risultato = a * b
+    elif op == "/":
+        if b == 0:
+            return {"risultato": "Errore: divisione per zero"}
+        risultato = a / b
+    else:
+        return {"risultato": "Operazione non valida"}
+
+    return {"risultato": risultato}
